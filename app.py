@@ -23,7 +23,7 @@ def predict_image(img):
 
 # Streamlit UI
 st.title("CIFAR-10 Image Classification")
-st.write("This Application is created by TALHA KHAN"
+st.write("This Application is created by TALHA KHAN")
 uploaded_file = st.file_uploader("Choose an image...", type="jpg")
 
 if uploaded_file is not None:
