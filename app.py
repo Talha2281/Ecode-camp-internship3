@@ -4,7 +4,13 @@ from PIL import Image
 import numpy as np
 
 # Load the trained model
-model = load_model('cnn.keras')  # Make sure the filename matches your model
+model = load_model('cnn.keras')  # Adjust to your model file name
+
+# CIFAR-10 class labels
+class_labels = [
+    "Airplane", "Automobile", "Bird", "Cat", "Deer", 
+    "Dog", "Frog", "Horse", "Ship", "Truck"
+]
 
 # Function for model prediction
 def predict_image(img):
@@ -12,10 +18,12 @@ def predict_image(img):
     img_array = np.array(img) / 255.0
     img_array = np.expand_dims(img_array, axis=0)  # Reshape for prediction
     prediction = model.predict(img_array)
-    return prediction
+    predicted_class = class_labels[np.argmax(prediction)]
+    return predicted_class
 
 # Streamlit UI
 st.title("CIFAR-10 Image Classification")
+st.write("This Application is created by TALHA KHAN"
 uploaded_file = st.file_uploader("Choose an image...", type="jpg")
 
 if uploaded_file is not None:
@@ -26,3 +34,5 @@ if uploaded_file is not None:
 
     prediction = predict_image(image)
     st.write("Prediction:", prediction)
+
+
